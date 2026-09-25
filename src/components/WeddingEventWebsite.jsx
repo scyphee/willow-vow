@@ -92,12 +92,12 @@ const eventTypes = [
 ];
 
 const gallery = [
-  { id: 1, type: "Weddings", title: "Golden Meadow Vows", location: "Countryside", image: "public/images/boho-bouquet.jpg" },
-  { id: 2, type: "Events", title: "A Candlelit Birthday", location: "Private Estate", colors: "from-[#8c695a] via-[#d2a988] to-[#efe0ca]" },
-  { id: 3, type: "Weddings", title: "Modern Garden Romance", location: "Botanical House", colors: "from-[#b8c2ad] via-[#efe4d3] to-[#8c7465]" },
-  { id: 4, type: "Events", title: "Gather & Grow", location: "Brand Dinner", colors: "from-[#5d6657] via-[#aeb59e] to-[#e9d7be]" },
-  { id: 5, type: "Weddings", title: "Wildflower Elopement", location: "Alpine Lake", colors: "from-[#8194a0] via-[#b9b99e] to-[#e7d9c2]" },
-  { id: 6, type: "Events", title: "Sunday in the Orchard", location: "Family Celebration", colors: "from-[#c9a780] via-[#7d886b] to-[#f0e4cf]" },
+  { id: 1, type: "Weddings", title: "Golden Meadow Vows", location: "Countryside", image: "/images/boho-bouquet.jpg", position: "object-center" },
+  { id: 2, type: "Events", title: "A Candlelit Celebration", location: "Private Dinner", image: "/images/dinner-table.jpg", position: "object-center" },
+  { id: 3, type: "Weddings", title: "Modern Garden Romance", location: "Garden Celebration", image: "/images/bride-tree.jpg", position: "object-[52%_center]" },
+  { id: 4, type: "Events", title: "Gather Around the Table", location: "Intimate Event", image: "/images/flowers-table.jpg", position: "object-center" },
+  { id: 5, type: "Weddings", title: "Quiet Moments", location: "Wedding Day", image: "/images/holding-hands.jpg", position: "object-center" },
+  { id: 6, type: "Weddings", title: "The Details", location: "Wedding Story", image: "/images/rings.jpg", position: "object-center" },
 ];
 
 const reviews = [
@@ -205,15 +205,20 @@ export default function WeddingEventWebsite() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, scale: .97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .8, delay: .15 }} className="relative mx-auto w-full max-w-xl lg:max-w-none">
-            <div className="relative ml-auto aspect-[4/5] w-[88%] overflow-hidden rounded-t-[12rem] bg-gradient-to-br from-[#a9b39e] via-[#d8c7ae] to-[#8d7669] shadow-2xl shadow-[#62584b]/15">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_25%,rgba(255,255,255,.65),transparent_25%),radial-gradient(circle_at_22%_65%,rgba(255,242,221,.4),transparent_22%)]" />
-              <div className="absolute inset-x-[16%] bottom-[12%] top-[18%] rounded-t-full border border-white/45" />
-              <div className="absolute bottom-[17%] left-[18%] h-40 w-40 rounded-full bg-[#f2e5d2]/75 blur-sm" />
-              <div className="absolute bottom-[20%] right-[15%] h-52 w-28 rotate-12 rounded-full bg-[#76816d]/80 blur-sm" />
-              <div className="absolute bottom-[18%] left-1/2 h-52 w-px -translate-x-1/2 bg-white/50" />
-              <div className="absolute bottom-[15%] left-1/2 -translate-x-1/2 text-center text-white drop-shadow">
-                <Flower2 className="mx-auto mb-3" size={34} strokeWidth={1}/>
-                <p className="font-serif text-2xl italic">Your day, your way</p>
+            <div className="relative ml-auto aspect-[4/5] w-[88%] overflow-hidden rounded-t-[12rem] bg-[#d8c7ae] shadow-2xl shadow-[#62584b]/15">
+              <Image
+                src="/images/wedding-kiss.jpg"
+                alt="Newlyweds sharing a kiss surrounded by their wedding guests"
+                fill
+                priority
+                sizes="(max-width: 1024px) 88vw, 44vw"
+                className="object-cover object-[54%_center]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#35332F]/25 via-transparent to-white/5" />
+              <div className="absolute inset-[14px] rounded-t-[11.2rem] border border-white/35" />
+              <div className="absolute bottom-7 right-7 text-right text-white drop-shadow-md">
+                <p className="text-[10px] font-semibold uppercase tracking-[.28em]">IB Signature</p>
+                <p className="mt-1 font-serif text-xl italic">Made for moments like this</p>
               </div>
             </div>
             <div className="absolute -bottom-6 left-0 max-w-[210px] rounded-2xl bg-[#fffaf2] p-5 shadow-xl shadow-black/10">
@@ -303,9 +308,22 @@ export default function WeddingEventWebsite() {
           <motion.div layout className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence>
               {projects.map((item, index) => (
-                <motion.article layout key={item.id} initial={{opacity:0, scale:.96}} animate={{opacity:1, scale:1}} exit={{opacity:0, scale:.96}} className={`group relative overflow-hidden rounded-3xl ${index === 1 ? "lg:translate-y-8" : ""}`}>
-                  <div className={`aspect-[4/5] bg-gradient-to-br ${item.colors}`}><div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,.45),transparent_20%)] transition duration-500 group-hover:scale-110"/></div>
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-7 pt-20"><p className="text-[9px] uppercase tracking-[.22em] text-white/75">{item.type} · {item.location}</p><h3 className="mt-2 font-serif text-3xl">{item.title}</h3></div>
+                <motion.article layout key={item.id} initial={{opacity:0, scale:.96}} animate={{opacity:1, scale:1}} exit={{opacity:0, scale:.96}} className={`group relative overflow-hidden rounded-3xl bg-[#4a4843] ${index === 1 ? "lg:translate-y-8" : ""}`}>
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={`${item.title} — ${item.location}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className={`object-cover ${item.position ?? "object-center"} transition duration-700 ease-out group-hover:scale-[1.045]`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent transition duration-500 group-hover:from-black/75" />
+                    <div className="absolute inset-[10px] rounded-[1.15rem] border border-white/0 transition duration-500 group-hover:border-white/25" />
+                  </div>
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 p-7 pt-24">
+                    <p className="text-[9px] uppercase tracking-[.22em] text-white/75">{item.type} · {item.location}</p>
+                    <h3 className="mt-2 font-serif text-3xl text-white">{item.title}</h3>
+                  </div>
                 </motion.article>
               ))}
             </AnimatePresence>
